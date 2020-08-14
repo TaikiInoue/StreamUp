@@ -3,18 +3,20 @@ from pathlib import Path
 from streamup.uploader.check_format import UploaderCheckFormat
 from streamup.uploader.status import UploaderStatus
 from streamup.uploader.upload import UploaderUpload
-from streamup.uploader.extract import UploaderExtract
+from streamup.uploader.zip import UploaderZip
 from streamup.uploader.create_mask import UploaderCreateMask
 from streamup.uploader.show_dataset import UploaderShowDataset
+from streamup.uploader.dvc import UploaderDVC
 
 
 class Uploader(
     UploaderCheckFormat,
     UploaderStatus,
     UploaderUpload,
-    UploaderExtract,
+    UploaderZip,
     UploaderCreateMask,
     UploaderShowDataset,
+    UploaderDVC,
 ):
     def __init__(self, base: Path):
 
@@ -34,7 +36,9 @@ class Uploader(
 
             uploaded_file = self.upload()
             if uploaded_file:
-                self.extract(uploaded_file)
+                self.save_zip(uploaded_file)
+                self.extract_zip(uploaded_file)
                 self.check_format()
                 self.create_mask()
+                self.data_versioning()
                 self.show_dataset()

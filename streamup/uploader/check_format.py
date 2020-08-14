@@ -21,12 +21,24 @@ class UploaderCheckFormat:
         self.placeholder["check_status"].success("DONE: Check Data Format")
 
     def check_data_structure(self):
+        """
+        dataset
+        ├── images
+        |   └── *.bmp
+        └── jsons
+            └── *.json
+        """
 
         data_structure = [str(p.relative_to(self.base)) for p in self.base.glob("*/*")]
         if data_structure != ["dataset/jsons", "dataset/images"]:
             self.error(sys._getframe().f_code.co_name)
 
     def check_file_convention(self):
+        """
+        Name convention
+        - dataset/images/[0-9]+_[0-9]{4}_[0-9]{4}_[0-9]{8}.bmp
+        - dataset/masks/[0-9]+_[0-9]{4}_[0-9]{4}_[0-9]{8}.json
+        """
 
         bmp_pattern = re.compile(r"\d+_\d{4}_\d{4}_\d{8}.bmp")
         for p in self.base.glob("dataset/images/*"):
