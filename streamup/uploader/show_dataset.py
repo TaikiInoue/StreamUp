@@ -1,7 +1,8 @@
-import streamlit as st
-import matplotlib.pyplot as plt
-from PIL import Image
 from pathlib import Path
+
+import matplotlib.pyplot as plt
+import streamlit as st
+from PIL import Image
 
 
 class UploaderShowDataset:

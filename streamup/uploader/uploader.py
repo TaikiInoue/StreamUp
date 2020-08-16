@@ -1,12 +1,14 @@
-import streamlit as st
 from pathlib import Path
+
+import streamlit as st
+
 from streamup.uploader.check_format import UploaderCheckFormat
+from streamup.uploader.create_mask import UploaderCreateMask
+from streamup.uploader.dvc import UploaderDVC
+from streamup.uploader.show_dataset import UploaderShowDataset
 from streamup.uploader.status import UploaderStatus
 from streamup.uploader.upload import UploaderUpload
 from streamup.uploader.zip import UploaderZip
-from streamup.uploader.create_mask import UploaderCreateMask
-from streamup.uploader.show_dataset import UploaderShowDataset
-from streamup.uploader.dvc import UploaderDVC
 
 
 class Uploader(

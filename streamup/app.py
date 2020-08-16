@@ -1,6 +1,8 @@
 from pathlib import Path
-from streamup.uploader import Uploader
+
 import streamlit as st
+
+from streamup.uploader import Uploader
 
 st.set_option("deprecation.showfileUploaderEncoding", False)
 
